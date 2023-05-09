@@ -26,20 +26,6 @@ function reading(event) {
     data[event.target.id] = event.target.value;
 }
 
-/*conseguir pasar ID para que muestre la alerta en cada elemento*/
-function showAlert(message, className) {
-    const alert = document.createElement('p');
-    alert.textContent = message;
-    alert.classList.add(className);
-    /*aqui manipular elemento*/
-    //no funciona appendChild
-
-    formulario.appendChild(alert);
-    setTimeout(() => {
-        alert.remove();
-    }, 3000);
-}
-
 
 formulario.addEventListener("submit", function(evento) {
     evento.preventDefault();
@@ -49,22 +35,24 @@ formulario.addEventListener("submit", function(evento) {
 
     if (first === '' || last === '' || email === '' || password === '') {
         if (first === '' ) {
-            showAlert("First Name cannot be empty", 'error');
+            //hacer que desaparezca
+            document.querySelector("#afirst").style.display = "block";
+            document.querySelector("#first").classList.add("error");
         }
         if (last === '' ) {
-            showAlert('Second Name cannot be empty', 'error');
+            document.querySelector("#alast").style.display = "block";
+            document.querySelector("#last").classList.add("error");
         }
         if (email === '') {
-            showAlert('Looks like this is not an email', 'error');
+            document.querySelector("#aemail").style.display = "block";
+            document.querySelector("#email").classList.add("error");
         }
         if (password === '') {
-            showAlert('Password cannot be empty', 'error');
+            document.querySelector("#apassword").style.display = "block";
+            document.querySelector("#password").classList.add("error");
         }
-        showAlert("All field required", 'error');
-        console.log("wrong");
     } else {
         showAlert("Submitted form", 'sent');
-        console.log('right');
     }
     
 })
